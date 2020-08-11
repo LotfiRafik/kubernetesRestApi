@@ -28,7 +28,10 @@ urlpatterns = [
     path('<int:id>/node/', NodeList.as_view()),
     
     #List pods per cluster "HTTP GET", Deploy pod to the cluster "HTTP POST"
-    path('<int:id>/pod/', PodList.as_view()),
+    path('<int:clusterid>/pod/', PodList.as_view()),
+
+    #Pod Detail (information) "HTTP GET" , Modify pod "HTTP PATCH/PUT" , Delete pod "HTTP DELETE"
+    path('<int:clusterid>/pod/<str:podid>/', PodDetail.as_view()),
 
     #Node Detail (information) "HTTP GET" , Modify node "HTTP PATCH/PUT" , Delete node "HTTP DELETE"
     #Node can be 'master node' or 'worker node' 
