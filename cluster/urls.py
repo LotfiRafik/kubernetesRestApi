@@ -22,22 +22,24 @@ urlpatterns = [
     path('', ClusterList.as_view()),
 
     #Cluster Detail (information) "HTTP GET"
-    path('<int:id>/', ClusterDetail.as_view()),
+    path('<int:clusterid>/', ClusterDetail.as_view()),
     
     #List nodes cluster "HTTP GET", Add node to the cluster "HTTP POST"
-    path('<int:id>/node/', NodeList.as_view()),
-    
-    #List pods per cluster "HTTP GET", Deploy pod to the cluster "HTTP POST"
-    path('<int:clusterid>/pod/', PodList.as_view()),
-
-    #Pod Detail (information) "HTTP GET" , Modify pod "HTTP PATCH/PUT" , Delete pod "HTTP DELETE"
-    path('<int:clusterid>/pod/<str:podid>/', PodDetail.as_view()),
+    path('<int:clusterid>/nodes/', NodeList.as_view()),
 
     #Node Detail (information) "HTTP GET" , Modify node "HTTP PATCH/PUT" , Delete node "HTTP DELETE"
     #Node can be 'master node' or 'worker node' 
-    path('<int:id>/node/<int:nodeid>/', NodeDetail.as_view()),
+    path('<int:clusterid>/nodes/<str:nodeName>/', NodeDetail.as_view()),
 
     #List pods per node "HTTP GET"
-    path('<int:id>/node/<int:nodeid>/pod/', NodePodList.as_view()),
+    path('<int:clusterid>/nodes/<int:nodeName>/pod/', NodePodList.as_view()),
+    
+    #List pods per cluster "HTTP GET", Deploy pod to the cluster "HTTP POST"
+    path('<int:clusterid>/pods/', PodList.as_view()),
+
+    #Pod Detail (information) "HTTP GET" , Modify pod "HTTP PATCH/PUT" , Delete pod "HTTP DELETE"
+    path('<int:clusterid>/pods/<str:podid>/', PodDetail.as_view()),
+
+
 
 ]
